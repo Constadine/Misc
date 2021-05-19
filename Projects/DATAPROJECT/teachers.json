@@ -1,1 +1,1 @@
-[{"id": 1001, "name": "Mark", "surname": "Wiens"}, {"id": 1002, "name": "Moros", "surname": "Morakis"}, {"id": 1003, "name": "Astifila3", "surname": "Sfixtokolis"}]
+[{"first_name": "Mark", "surname": "Wiens", "teacher_id": 1001}, {"first_name": "Moros", "surname": "Morakis", "teacher_id": 1002}, {"first_name": "Astifila3", "surname": "Sfixtokolis", "teacher_id": 1003}, {"first_name": "Professor", "surname": "Myehlerrrr", "teacher_id": 1004}]

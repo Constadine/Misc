@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./PyQt5",
+        "./Projects/DATAPROJECT"
+    ],
+    "python.pythonPath": "D:\\Asmodinos_Stuff\\Knowledge_Power\\Programming\\Python\\python.exe"
+}

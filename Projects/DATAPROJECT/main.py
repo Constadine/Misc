@@ -1,10 +1,13 @@
 from mod_pupils import *
-from mod_teachers import *
+from teacher import Teacher
+from teachers import Teachers
 
 
 def main():
-    init_teachers_data()
+
     init_pupils_data()
+    teachers = Teachers()
+
     while True:
         print_menu()
         choice = get_int("Pick one: ")
@@ -115,28 +118,28 @@ def main():
         elif choice == 5:
             first_name = input("Give name: ")
             surname = input("Give surname: ")
-            create_teacher(first_name, surname)
+            teachers.create_teacher(first_name, surname)
             print(teachers)
 
         elif choice == 6:
             teacher_id = get_int("Give id: ")
-            teacher = read_teacher(teacher_id)
-            print_teacher(teacher)
+            teacher = teachers.read_teacher(teacher_id)
+            if teacher is None:
+                print("No such teacher exists!")
+            else:
+                teacher.print_teacher()
 
         elif choice == 7:
             teacher_id = get_int("Give id: ")
-            teacher_key = input("Give key: ")
-            teacher_value = input("Give value: ")
-            update_teacher(teacher_id, teacher_key, teacher_value)
+            teachers.update_teacher(teacher_id)
 
         elif choice == 8:
             teacher_id = get_int("Give id: ")
-            delete_teacher(teacher_id)
-            print(teachers)
+            teachers.delete_teacher(teacher_id)
 
         elif choice == 9:
             print("Bye.")
-            save_teachers_data()
+            teachers.save_teachers_data()
             save_pupils_data()
             break
 
