@@ -8,15 +8,26 @@ class Arena:
         self.team_A = team_A
         self.team_B = team_B
 
-    def print_state(self):
-        print("TEAM A")
+    def __str__(self):
+        st = "\n" + ("-" * 15)
+        st += "\nTEAM A"
         for character in self.team_A:
-            character.print()
-        print("-"*15)
-        print("TEAM B")
+            st += "\n" + str(character)
+        st += "\n" + ("-" * 15)
+        st += "\nTEAM B"
         for character in self.team_B:
-            character.print()
-        print("-"*15)
+            st += "\n" + str(character)
+        st += "\n" + ("-" * 15)
+        return st
+
+    def __repr__(self):
+        st =  f"Arena(["
+        st += ", ".join([repr(character) for character in self.team_A])
+        st += "],["
+        st += ", ".join([repr(character) for character in self.team_B])
+        st += "])"
+        return st
+
 
     def play(self):
         time = -1
@@ -26,7 +37,7 @@ class Arena:
             print("=" * 20)
             print("Time = " + str(time))
             print("=" * 20)
-            self.print_state()
+            print(self)
 
             chars_to_play = []
             for character in self.team_A:
