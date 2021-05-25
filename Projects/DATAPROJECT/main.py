@@ -1,11 +1,22 @@
-from mod_pupils import *
-from teacher import Teacher
+from menus import print_menu, print_submenu
+from pupils import Pupils
 from teachers import Teachers
+
+
+def get_int(prompt):
+    while True:
+        try:
+            value = int(input(prompt))
+            break
+        except:
+            print("Wrong input!")
+            continue
+    return value
 
 
 def main():
 
-    init_pupils_data()
+    pupils = Pupils()
     teachers = Teachers()
 
     while True:
@@ -15,12 +26,12 @@ def main():
         if choice == 1:
             print("NEW PUPIL")
             print("==========")
-            pupil = create_pupil()
+            pupil = pupils.create_pupil()
             if pupil is None:
                 continue
             else:
                 print("NEW PUPIL CREATED")
-                print_pupil(pupil)
+                print(pupil)
 
         elif choice == 2:
             print_submenu()
@@ -28,20 +39,20 @@ def main():
 
             if print_choice == 1:
                 pupil_id = get_int("Give id:")
-                pupil = search_pupil_by_id(pupil_id)
+                pupil = pupils.search_pupil_by_id(pupil_id)
                 if pupil is None:
                     print("Pupil  with this id does not exist.")
                 else:
                     print("   PUPIL   ")
-                    print_pupil(pupil)
+                    print(pupil)
 
             elif print_choice == 2:
                 print("\n")
-                print_pupils_details()
+                print(pupils)
 
             elif print_choice == 3:
                 print("\n")
-                print_pupils_names()
+                pupils.print_pupils_names()
 
             else:
                 print("Wrong input! ")
@@ -57,14 +68,14 @@ def main():
             if update_choice == 1:
                 pupil_id = get_int("Give id: ")
 
-                pupil = search_pupil_by_id(pupil_id)
+                pupil = pupils.search_pupil_by_id(pupil_id)
                 if pupil is None:
                     print("Error! No pupil with this id!")
                     continue
 
             elif update_choice == 2:
-                surname = input("Give surname: ")
-                matching_pupils = search_pupil_by_surname(surname)
+                last_name = input("Give surname: ")
+                matching_pupils = pupil.search_pupil_by_surname(last_name)
                 if not matching_pupils:
                     print("No matching pupils with this surname!")
                     continue
@@ -72,14 +83,13 @@ def main():
                     pupil = matching_pupils[0]
                 else:
                     for p in matching_pupils:
-                        print_pupil(p)
+                        print(p)
                         print(f"id = {p['id']}")
                         print("-" * 15)
                     pupil_id = get_int("Give id: ")
-                    pupil = search_pupil_by_id(pupil_id)
+                    pupil = pupils.search_pupil_by_id(pupil_id)
 
-            pupil_update(pupil)
-            print("Pupil updated!")
+            pupils.pupil_update(pupil)
 
         elif choice == 4:
             print("\n===============")
@@ -91,14 +101,14 @@ def main():
             if delete_choice == 1:
                 pupil_id = get_int("Give id: ")
 
-                pupil = search_pupil_by_id(pupil_id)
+                pupil = pupil.search_pupil_by_id(pupil_id)
                 if pupil is None:
                     print("Error! No pupil with this id!")
                     continue
 
             elif delete_choice == 2:
-                surname = input("Give surname: ")
-                matching_pupils = search_pupil_by_surname(surname)
+                last_name = input("Give surname: ")
+                matching_pupils = pupils.search_pupil_by_surname(last_name)
                 if not matching_pupils:
                     print("No matching pupils with this surname!")
                     continue
@@ -106,14 +116,13 @@ def main():
                     pupil = matching_pupils[0]
                 else:
                     for p in matching_pupils:
-                        print_pupil(p)
+                        print(p)
                         print(f"id = {p['id']}")
                         print("-" * 15)
                     pupil_id = get_int("Give id: ")
-                    pupil = search_pupil_by_id(pupil_id)
+                    pupil = pupils.search_pupil_by_id(pupil_id)
 
-            delete_pupil_by_id(pupil["id"])
-            print("Pupil deleted!")
+            pupils.delete_pupil_by_id(pupil["id"])
 
         elif choice == 5:
             first_name = input("Give name: ")
@@ -127,7 +136,7 @@ def main():
             if teacher is None:
                 print("No such teacher exists!")
             else:
-                teacher.print_teacher()
+                print(teacher)
 
         elif choice == 7:
             teacher_id = get_int("Give id: ")
@@ -140,7 +149,7 @@ def main():
         elif choice == 9:
             print("Bye.")
             teachers.save_teachers_data()
-            save_pupils_data()
+            pupils.save_pupils_data()
             break
 
 

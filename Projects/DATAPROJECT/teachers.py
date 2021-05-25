@@ -1,6 +1,16 @@
 import json
-from mod_pupils import get_int
 from teacher import Teacher
+
+
+def get_int(prompt):
+    while True:
+        try:
+            value = int(input(prompt))
+            break
+        except:
+            print("Wrong input!")
+            continue
+    return value
 
 
 class Teachers:
@@ -56,7 +66,7 @@ class Teachers:
 
         for teacher in self.teachers:
             if teacher_id == teacher.teacher_id:
-                teacher.print_teacher()
+                print(teacher)
                 choice = get_int("Update 1-name, 2-surname: ")
                 if choice == 1:
                     teacher.first_name = input("Give new name: ")
