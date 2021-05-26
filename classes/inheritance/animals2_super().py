@@ -1,6 +1,9 @@
-class Animal:
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
     def make_sound(self):
-        print("")
+        pass
 
 
 class Cat(Animal):
@@ -29,7 +32,7 @@ class KingDoberman(Doberman):
         print("WOOAAAAAAAAF")
 
 
-Animal().make_sound()
+# Animal().make_sound() afirimeni class
 Cat().make_sound()
 HimalayanCat().make_sound()
 Dog().make_sound()

@@ -8,12 +8,14 @@ class Character:
         self.equipment = equipment
         self.max_health = 100 * self.equipment.cape
         self.health = 100 * self.equipment.cape
+        self.attack_range = (3,11)
         self.attack_speed = attack_speed
         self.delay = delay
+        self.max_delay = 5
 
     def attack(self):
-        self.delay = 5 - self.attack_speed
-        return round(randrange(3, 11) * self.equipment.sword)
+        self.delay = self.max_delay - self.attack_speed
+        return round(randrange(self.attack_range[0], self.attack_range[1]) * self.equipment.sword)
 
     def is_dead(self):
         return self.health <= 0
