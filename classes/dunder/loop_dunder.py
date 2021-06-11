@@ -1,6 +1,7 @@
 class X():
     def __init__(self) -> None:
         self.ar = [x for x in range(5)]
+        self.other = 2
 
     def __len__(self):
         return len(self.ar)

@@ -76,10 +76,14 @@ class Teachers:
                     print("Wrong input")
                 return
 
-    def delete_teacher(self, teacher_id):
+    def delete_teacher(self, teacher_id, lessons):
         for i in range(len(self.teachers)):
             if teacher_id == self.teachers[i].teacher_id:
                 self.teachers.pop(i)
+
+                for lesson in lessons.lessons:
+                    if teacher_id in lesson.teacher_ids:
+                        lesson.teacher_ids.remove(teacher_id)
                 return
         else:
             print("No teacher with this id!")

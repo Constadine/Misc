@@ -104,11 +104,14 @@ class Pupils:
         print(pupil)
         print("Pupil updated! ")
 
-    def delete_pupil_by_id(self, pupil_id):
+    def delete_pupil_by_id(self, pupil_id, lessons):
         for i in range(len(self.pupils)):
             if pupil_id == self.pupils[i].pupil_id:
                 self.pupils.pop(i)
                 print("Pupil deleted!")
+                for lesson in lessons.lessons:
+                    if pupil_id in lesson.pupil_ids:
+                        lesson.pupil_ids.remove(pupil_id)
                 return
         else:
             print("No student with this id!")

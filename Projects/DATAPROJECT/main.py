@@ -104,7 +104,7 @@ def main():
                 if delete_choice == 1:
                     pupil_id = get_int("Give id: ")
 
-                    pupil = pupil.search_pupil_by_id(pupil_id)
+                    pupil = pupils.search_pupil_by_id(pupil_id)
                     if pupil is None:
                         print("Error! No pupil with this id!")
                         continue
@@ -125,7 +125,7 @@ def main():
                         pupil_id = get_int("Give id: ")
                         pupil = pupils.search_pupil_by_id(pupil_id)
 
-                pupils.delete_pupil_by_id(pupil_id)
+                pupils.delete_pupil_by_id(pupil_id, lessons)
 
         elif choice == 2:
 
@@ -149,7 +149,7 @@ def main():
                 teachers.update_teacher(teacher_id)
             elif teacher_choice == 4:
                 teacher_id = get_int("Give id: ")
-                teachers.delete_teacher(teacher_id)
+                teachers.delete_teacher(teacher_id, lessons)
 
         elif choice == 3:
 
